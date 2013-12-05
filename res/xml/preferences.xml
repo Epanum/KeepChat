@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <PreferenceCategory
+        android:key="pref_key_snaps_settings"
+        android:title="@string/pref_snaps_title" >
+        <ListPreference
+            android:defaultValue="@string/pref_snaps_default_value"
+            android:dialogTitle="@string/pref_images"
+            android:entries="@array/pref_snaps_entries"
+            android:entryValues="@array/pref_snaps_values"
+            android:key="pref_key_snaps_images"
+            android:title="@string/pref_images" />
+        <ListPreference
+            android:defaultValue="@string/pref_snaps_default_value"
+            android:dialogTitle="@string/pref_videos"
+            android:entries="@array/pref_snaps_entries"
+            android:entryValues="@array/pref_snaps_values"
+            android:key="pref_key_snaps_videos"
+            android:title="@string/pref_videos" />
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:key="pref_key_stories_settings"
+        android:title="@string/pref_stories_title" >
+        <ListPreference
+            android:defaultValue="@string/pref_snaps_default_value"
+            android:dialogTitle="@string/pref_images"
+            android:entries="@array/pref_stories_entries"
+            android:entryValues="@array/pref_stories_values"
+            android:key="pref_key_stories_images"
+            android:title="@string/pref_images" />
+        <ListPreference
+            android:defaultValue="@string/pref_snaps_default_value"
+            android:dialogTitle="@string/pref_videos"
+            android:entries="@array/pref_stories_entries"
+            android:entryValues="@array/pref_stories_values"
+            android:key="pref_key_stories_videos"
+            android:title="@string/pref_videos" />
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:key="pref_key_toasts"
+        android:title="@string/pref_toasts_title" >
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="pref_key_toasts_checkbox"
+            android:summaryOff="@string/pref_toasts_summary_off"
+            android:summaryOn="@string/pref_toasts_summary_on"
+            android:title="@string/pref_toasts_title_checkbox" />
+
+        <ListPreference
+            android:defaultValue="@string/pref_toasts_duration_default_value"
+            android:dependency="pref_key_toasts_checkbox"
+            android:entries="@array/pref_toasts_duration_entries"
+            android:entryValues="@array/pref_toasts_duration_values"
+            android:key="pref_key_toasts_duration"
+            android:title="@string/pref_toasts_duration_title" />
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:key="pref_key_extra_settings"
+        android:title="@string/pref_extra_settings_title" >
+        <Preference
+            android:defaultValue="-1"
+            android:key="pref_key_save_location"
+            android:persistent="true"
+            android:title="@string/pref_save_location_title" />
+
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="pref_key_save_sent_snaps"
+            android:summaryOff="@string/pref_save_sent_snaps_summary_off"
+            android:summaryOn="@string/pref_save_sent_snaps_summary_on"
+            android:title="@string/pref_save_sent_snaps_title_checkbox" />
+        
+         <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="pref_key_debug_mode"
+            android:summaryOff="@string/pref_debug_mode_summary_off"
+            android:summaryOn="@string/pref_debug_mode_summary_on"
+            android:title="@string/pref_debug_mode_title_checkbox" />
+    </PreferenceCategory>
+
+</PreferenceScreen>

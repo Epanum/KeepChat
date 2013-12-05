@@ -1,0 +1,52 @@
+<resources>
+
+    <string name="app_name">KeepChat</string>
+    <string name="pref_snaps_title">Snaps</string>
+    <string name="pref_stories_title">Stories</string>
+    <string name="pref_toasts_title">Toasts</string>
+    <string name="pref_extra_settings_title">Extra Settings</string>
+    <string name="pref_snaps_default_value">0</string>
+    <string name="pref_images">Images</string>
+    <string name="pref_toasts_summary_off">Toasts Disabled</string>
+    <string name="pref_toasts_summary_on">Toasts Enabled</string>
+    <string name="pref_toasts_title_checkbox">Enable Toasts</string>
+    <string name="pref_toasts_duration_title">Toast Length</string>
+    <string name="pref_save_location_title">Choose Save Location</string>
+    <string name="pref_save_sent_snaps_summary_off">Sent snaps will not be saved</string>
+    <string name="pref_save_sent_snaps_summary_on">Sent snaps will be saved</string>
+    <string name="pref_save_sent_snaps_title_checkbox">Save Sent Snaps</string>
+    <string-array name="pref_snaps_entries">
+        <item >Save Automatically</item>
+        <item >Ask to Save</item>
+        <item >Do Not Save</item>
+    </string-array>
+    <string-array name="pref_snaps_values">
+        <item >0</item>
+        <item >1</item>
+        <item >2</item>
+    </string-array>
+    
+    <string name="pref_videos">Videos</string>
+    <string-array name="pref_stories_entries">
+        <item >Save Automatically</item>
+        <item >Do Not Save</item>
+    </string-array>
+    <string-array name="pref_stories_values">
+        <item >0</item>
+        <item >2</item>
+    </string-array>
+    <string-array name="pref_toasts_duration_entries">
+        <item >Short</item>
+        <item >Long</item>
+    </string-array>
+    <string-array name="pref_toasts_duration_values">
+        <item >0</item>
+        <item >1</item>
+    </string-array>
+    <string name="pref_toasts_duration_default_value">1</string>
+    <string name="pref_debug_mode_summary_off">Debug Mode Off</string>
+    <string name="pref_debug_mode_summary_on">Debug Mode On</string>
+    <string name="pref_debug_mode_title_checkbox">Debug Mode</string>
+    
+
+</resources>

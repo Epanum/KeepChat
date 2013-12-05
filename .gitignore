@@ -1,0 +1,16 @@
+*.iml
+*.iws
+*.ipr
+.idea/
+local.properties
+bin
+libs
+gen/
+out/
+
+*.apk
+out/
+XposedBridgeApi-42.jar
+.settings/
+.bin/
+project.properties
