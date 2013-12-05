@@ -23,6 +23,7 @@ import android.graphics.Bitmap;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Build;
+import android.util.Log;
 import android.widget.Toast;
 
 import de.robv.android.xposed.IXposedHookLoadPackage;
@@ -509,8 +510,11 @@ public class KeepChat implements IXposedHookLoadPackage {
 										toastMessage = "This video already exists.";
 									} else {
 										Object obj = getObjectField(
-												param.thisObject, names[VARIABLE_SNAPPREVIEWFRAGMENT_SNAPCAPTUREDEVENT]);
-										String videoUri = ((Uri) callMethod(obj, names[FUNCTION_SNAPPREVIEWFRAGMENT_VIDEOURI]))
+												param.thisObject,
+												names[VARIABLE_SNAPPREVIEWFRAGMENT_SNAPCAPTUREDEVENT]);
+										String videoUri = ((Uri) callMethod(
+												obj,
+												names[FUNCTION_SNAPPREVIEWFRAGMENT_VIDEOURI]))
 												.getPath();
 
 										if (saveVideo(videoUri, file)) {
@@ -539,8 +543,10 @@ public class KeepChat implements IXposedHookLoadPackage {
 													names[FUNCTION_SNAPPREVIEWFRAGMENT_GETSNAPBITMAP]);
 										} else {
 											Object obj = getObjectField(
-													param.thisObject, names[VARIABLE_SNAPPREVIEWFRAGMENT_SNAPEDITORVIEW]);
-											image = (Bitmap) callMethod(obj,
+													param.thisObject,
+													names[VARIABLE_SNAPPREVIEWFRAGMENT_SNAPEDITORVIEW]);
+											image = (Bitmap) callMethod(
+													obj,
 													names[FUNCTION_SNAPPREVIEWFRAGMENT_GETSNAPBITMAP]);
 										}
 
@@ -790,8 +796,7 @@ public class KeepChat implements IXposedHookLoadPackage {
 			out.flush();
 			out.close();
 		} catch (Exception e) {
-			// error while saving
-			e.printStackTrace();
+			logging(Log.getStackTraceString(e));
 			return false;
 		}
 		return true;
@@ -815,7 +820,7 @@ public class KeepChat implements IXposedHookLoadPackage {
 			out.flush();
 			out.close();
 		} catch (Exception e) {
-			e.printStackTrace();
+			logging(Log.getStackTraceString(e));
 			return false;
 		}
 		return true;
