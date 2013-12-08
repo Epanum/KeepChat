@@ -47,6 +47,9 @@
     <string name="pref_debug_mode_summary_off">Debug Mode Off</string>
     <string name="pref_debug_mode_summary_on">Debug Mode On</string>
     <string name="pref_debug_mode_title_checkbox">Debug Mode</string>
+    <string name="pref_sort_files_mode_title_checkbox">Sort Files into Folders</string>
+    <string name="pref_sort_files_mode_summary_on">Files will be sorted into folders</string>
+    <string name="pref_sort_files_mode_summary_off">Files will not be sorted into folders</string>
     
 
 </resources>

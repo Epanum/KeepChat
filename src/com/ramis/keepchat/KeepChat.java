@@ -1,7 +1,8 @@
 //TO DO 
-//OPTION TO ENABLE/DISABLE
-//MOVE FILES WHEN FOLDER CHANGES
-// get rid of toast length
+// MOVE FILES WHEN FOLDER CHANGES
+// make errors appear all the time
+// new option
+// new logging to display errors and initial start
 
 package com.ramis.keepchat;
 
@@ -23,6 +24,7 @@ import android.graphics.Bitmap;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Environment;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -107,6 +109,8 @@ public class KeepChat implements IXposedHookLoadPackage {
 	private boolean saveSentSnaps = prefs.getBoolean(
 			"pref_key_save_sent_snaps", false);
 	private boolean debugMode = prefs.getBoolean("pref_key_debug_mode", false);
+	private boolean sortFilesMode = prefs.getBoolean(
+			"pref_key_sort_files_mode", true);
 
 	// loading package
 	@Override
@@ -114,8 +118,9 @@ public class KeepChat implements IXposedHookLoadPackage {
 		if (!lpparam.packageName.equals("com.snapchat.android"))
 			return;
 		else {
-			logging("\n------------------- KEEPCHAT STARTED --------------------");
-			logging("Snapchat Loaded");
+			XposedBridge
+					.log("\n------------------- KEEPCHAT STARTED --------------------");
+			XposedBridge.log("Snapchat Loaded");
 
 			String versionName;
 			try {
@@ -127,17 +132,22 @@ public class KeepChat implements IXposedHookLoadPackage {
 				PackageInfo piSnapChat = context.getPackageManager()
 						.getPackageInfo(lpparam.packageName, 0);
 				versionName = piSnapChat.versionName;
-				logging("SnapChat Version Name: " + piSnapChat.versionName);
-				logging("SnapChat Version Code: " + piSnapChat.versionCode);
+				XposedBridge.log("SnapChat Version Name: "
+						+ piSnapChat.versionName);
+				XposedBridge.log("SnapChat Version Code: "
+						+ piSnapChat.versionCode);
 				PackageInfo piKeepchat = context.getPackageManager()
 						.getPackageInfo(PACKAGE_NAME, 0);
-				logging("KeepChat Version Name: " + piKeepchat.versionName);
-				logging("KeepChat Version Code: " + piKeepchat.versionCode);
-				logging("Android Release: " + Build.VERSION.RELEASE);
+				XposedBridge.log("KeepChat Version Name: "
+						+ piKeepchat.versionName);
+				XposedBridge.log("KeepChat Version Code: "
+						+ piKeepchat.versionCode);
+				XposedBridge.log("Android Release: " + Build.VERSION.RELEASE);
 
 			} catch (Exception e) {
-				logging("Exception while trying to get version info. ("
-						+ e.getMessage() + ")");
+				XposedBridge
+						.log("Exception while trying to get version info. ("
+								+ e.getMessage() + ")");
 				return;
 			}
 
@@ -220,7 +230,7 @@ public class KeepChat implements IXposedHookLoadPackage {
 			}
 			names = nameResolution.get(versionResolution.get(versionName));
 
-			logging("---------------------------------------------------------");
+			XposedBridge.log("---------------------------------------------------------");
 
 			// get new Preferences
 			refreshPreferences();
@@ -266,8 +276,7 @@ public class KeepChat implements IXposedHookLoadPackage {
 
 								File file = createFile(filename + ".jpg",
 										"/RecievedSnaps");
-								logging("File Location: " + savePath
-										+ "/RecievedSnaps/" + filename + ".jpg");
+								logging(mediaPath);
 								if (file.exists()) {
 									logging("Image Snap already Exists");
 									toastMessage = "The image already exists.";
@@ -327,8 +336,7 @@ public class KeepChat implements IXposedHookLoadPackage {
 
 								File file = createFile(filename + ".jpg",
 										"/Stories");
-								logging("File Location: " + savePath
-										+ "/Stories/" + filename + ".jpg");
+								logging(mediaPath);
 								if (file.exists()) {
 									logging("Image Story already Exists");
 									isSaved = true;
@@ -397,8 +405,7 @@ public class KeepChat implements IXposedHookLoadPackage {
 
 								File file = createFile(filename + ".mp4",
 										"/RecievedSnaps");
-								logging("File Location: " + savePath
-										+ "/RecievedSnaps/" + filename + ".mp4");
+								logging(mediaPath);
 								if (file.exists()) {
 									isSaved = true;
 									logging("Video Snap already Exists");
@@ -455,8 +462,7 @@ public class KeepChat implements IXposedHookLoadPackage {
 
 								File file = createFile(filename + ".mp4",
 										"/Stories");
-								logging("File Location: " + savePath
-										+ "/Stories/" + filename + ".mp4");
+								logging(mediaPath);
 								if (file.exists()) {
 									isSaved = true;
 									logging("Video Story already Exists");
@@ -503,8 +509,7 @@ public class KeepChat implements IXposedHookLoadPackage {
 									logging("Video Sent Snap");
 									File file = createFile(filename + ".mp4",
 											"/SentSnaps");
-									logging("File Location: " + savePath
-											+ "/SentSnaps/" + filename + ".mp4");
+									logging(mediaPath);
 									if (file.exists()) {
 										logging("Video Sent Snap already Exists");
 										toastMessage = "This video already exists.";
@@ -530,8 +535,7 @@ public class KeepChat implements IXposedHookLoadPackage {
 									logging("Image Sent Snap");
 									File file = createFile(filename + ".jpg",
 											"/SentSnaps");
-									logging("File Location: " + savePath
-											+ "/SentSnaps/" + filename + ".jpg");
+									logging(mediaPath);
 									if (file.exists()) {
 										logging("file already exists");
 										toastMessage = "The image already exists";
@@ -580,6 +584,7 @@ public class KeepChat implements IXposedHookLoadPackage {
 								MethodHookParam param) throws Throwable {
 							// logging("Not reporting screenshotted. :)");
 							// the line
+							XposedBridge.log("was Screenshotted   "  + param.getClass().getName());
 							return false;
 						}
 					});
@@ -676,6 +681,8 @@ public class KeepChat implements IXposedHookLoadPackage {
 				@Override
 				protected Object replaceHookedMethod(MethodHookParam param)
 						throws Throwable {
+					XposedBridge.log("markScreenshotted   "  + param.getClass().getName());
+					
 					return null;
 				}
 			}
@@ -796,7 +803,7 @@ public class KeepChat implements IXposedHookLoadPackage {
 			out.flush();
 			out.close();
 		} catch (Exception e) {
-			logging(Log.getStackTraceString(e));
+			XposedBridge.log(Log.getStackTraceString(e));
 			return false;
 		}
 		return true;
@@ -820,7 +827,7 @@ public class KeepChat implements IXposedHookLoadPackage {
 			out.flush();
 			out.close();
 		} catch (Exception e) {
-			logging(Log.getStackTraceString(e));
+			XposedBridge.log(Log.getStackTraceString(e));
 			return false;
 		}
 		return true;
@@ -829,8 +836,13 @@ public class KeepChat implements IXposedHookLoadPackage {
 	// creates file
 	private File createFile(String fileName, String savePathSuffix) {
 
-		File myDir = new File(savePath + savePathSuffix);
-
+		File myDir;
+		if (sortFilesMode == true) {
+			myDir = new File(savePath + savePathSuffix);
+		} else {
+			myDir = new File(savePath);
+		}
+		
 		myDir.mkdirs();
 
 		File toReturn = new File(myDir, fileName);
@@ -838,7 +850,7 @@ public class KeepChat implements IXposedHookLoadPackage {
 		try {
 			mediaPath = toReturn.getCanonicalPath();
 		} catch (IOException e) {
-			e.printStackTrace();
+			XposedBridge.log(Log.getStackTraceString(e));
 		}
 
 		return toReturn;
@@ -846,6 +858,7 @@ public class KeepChat implements IXposedHookLoadPackage {
 
 	// refresh all preferences
 	private void refreshPreferences() {
+
 		prefs.reload();
 		savePath = prefs.getString("pref_key_save_location", "");
 		imagesSnapSavingMode = Integer.parseInt(prefs.getString(
@@ -862,6 +875,13 @@ public class KeepChat implements IXposedHookLoadPackage {
 				.parseInt(prefs.getString("pref_key_toasts_duration",
 						Integer.toString(Toast.LENGTH_LONG)));
 		debugMode = prefs.getBoolean("pref_key_debug_mode", false);
+		sortFilesMode = prefs.getBoolean("pref_key_sort_files_mode", true);
+		// in case the user doesn't open settings when first installed. need a
+		// default save location
+		if (savePath == "") {
+			String root = Environment.getExternalStorageDirectory().toString();
+			savePath = root + "/keepchat";
+		}
 
 	}
 
@@ -908,6 +928,7 @@ public class KeepChat implements IXposedHookLoadPackage {
 		logging("toastMode: " + toastMode);
 		logging("saveSentSnaps: " + saveSentSnaps);
 		logging("toastLength: " + toastLength);
+		logging("sortFilesMode" + sortFilesMode);
 		logging("---------------------------------------------------------");
 	}
 
