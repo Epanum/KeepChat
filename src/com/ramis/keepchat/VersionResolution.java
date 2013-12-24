@@ -55,6 +55,9 @@ public class VersionResolution {
 		versionResolution.put("4.0.22 Beta", names_obfuscated_4022B);
 		versionResolution.put("4.1.01", names_obfuscated_4101);
 		versionResolution.put("4.1.01 Beta", names_obfuscated_4101);
+		versionResolution.put("4.1.03", names_obfuscated_4101);
+		versionResolution.put("4.1.03 Beta", names_obfuscated_4101);
+		
 		
 		setNames();
 	}
@@ -87,7 +90,7 @@ public class VersionResolution {
 		names_original.put(CLASS_SNAPVIEW, basename + "ui.SnapView");
 		names_original.put(CLASS_SNAP_PREVIEW_FRAGMENT, basename + "SnapPreviewFragment");
 		names_original.put(CLASS_SNAPUPDATE, basename + "model.server.SnapUpdate");
-		names_original.put(CLASS_STORYVIEWRECORD, basename + "model.server.model.StoryViewRecord");
+		names_original.put(CLASS_STORYVIEWRECORD, basename + "model.StoryViewRecord");
 		names_original.put(FUNCTION_RECEIVEDSNAP_GETIMAGEBITMAP,"getImageBitmap");
 		names_original.put(FUNCTION_RECEIVEDSNAP_GETVIDEOURI,"getVideoUri");
 		names_original.put(FUNCTION_RECEIVEDSNAP_GETSENDER,	"getSender");
@@ -110,7 +113,7 @@ public class VersionResolution {
 		names_obfuscated_4021B.put(CLASS_SNAPVIEW, basename + "ui.SnapView");
 		names_obfuscated_4021B.put(CLASS_SNAP_PREVIEW_FRAGMENT,basename + "SnapPreviewFragment");
 		names_obfuscated_4021B.put(CLASS_SNAPUPDATE, basename + "model.server.SnapUpdate");
-		names_obfuscated_4021B.put(CLASS_STORYVIEWRECORD, basename + "model.server.model.StoryViewRecord");
+		names_obfuscated_4021B.put(CLASS_STORYVIEWRECORD, basename + "model.StoryViewRecord");
 		names_obfuscated_4021B.put(FUNCTION_RECEIVEDSNAP_GETIMAGEBITMAP, "a");
 		names_obfuscated_4021B.put(FUNCTION_RECEIVEDSNAP_GETVIDEOURI,"z");
 		names_obfuscated_4021B.put(FUNCTION_RECEIVEDSNAP_GETSENDER,"d");
@@ -133,7 +136,7 @@ public class VersionResolution {
 		names_obfuscated_4022B.put(CLASS_SNAPVIEW, basename + "ui.SnapView");
 		names_obfuscated_4022B.put(CLASS_SNAP_PREVIEW_FRAGMENT,basename + "SnapPreviewFragment");
 		names_obfuscated_4022B.put(CLASS_SNAPUPDATE, basename + "model.server.SnapUpdate");
-		names_obfuscated_4022B.put(CLASS_STORYVIEWRECORD, basename + "model.server.model.StoryViewRecord");
+		names_obfuscated_4022B.put(CLASS_STORYVIEWRECORD, basename + "model.StoryViewRecord");
 		names_obfuscated_4022B.put(FUNCTION_RECEIVEDSNAP_GETIMAGEBITMAP, "a");
 		names_obfuscated_4022B.put(FUNCTION_RECEIVEDSNAP_GETVIDEOURI,"B");
 		names_obfuscated_4022B.put(FUNCTION_RECEIVEDSNAP_GETSENDER,"e");
