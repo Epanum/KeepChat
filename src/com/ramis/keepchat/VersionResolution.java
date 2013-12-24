@@ -38,10 +38,9 @@ public class VersionResolution {
 
    	private String basename = "com.snapchat.android.";
 	private SparseArray<String> names_original = new SparseArray<String>();
-	private SparseArray<String> names_obfuscated_4021 = new SparseArray<String>();
-	private SparseArray<String> names_obfuscated_4022 = new SparseArray<String>();
+	private SparseArray<String> names_obfuscated_4021B = new SparseArray<String>();
+	private SparseArray<String> names_obfuscated_4022B = new SparseArray<String>();
 	private SparseArray<String> names_obfuscated_4101 = new SparseArray<String>();
-
 
 	public VersionResolution(String version){
 		this.version = version;
@@ -52,15 +51,20 @@ public class VersionResolution {
 		}
 		
 		versionResolution.put("4.0.20", names_original);
-		versionResolution.put("4.0.21 Beta", names_obfuscated_4021);
-		versionResolution.put("4.0.22 Beta", names_obfuscated_4022);
+		versionResolution.put("4.0.21 Beta", names_obfuscated_4021B);
+		versionResolution.put("4.0.22 Beta", names_obfuscated_4022B);
 		versionResolution.put("4.1.01", names_obfuscated_4101);
+		versionResolution.put("4.1.01 Beta", names_obfuscated_4101);
 		
 		setNames();
 	}
 
 	public boolean getLegacy(){
 		return legacy;
+	}
+	
+	public boolean videoStoryLegacy(){
+		return (versionCompare(version, "4.0.22 Beta") <= 0);
 	}
 	
 	public boolean versionSupported(){
@@ -101,51 +105,51 @@ public class VersionResolution {
 		names_original.put(FUNCTION_SNAPPREVIEWFRAGMENT_GETSNAPBITMAP,"getSnapBitmap");
 		names_original.put(VARIABLE_SNAPPREVIEWFRAGMENT_SNAPEDITORVIEW, "N/A");
 
-		names_obfuscated_4021.put(CLASS_RECEIVEDSNAP, basename + "model.ReceivedSnap");
-		names_obfuscated_4021.put(CLASS_STORY, basename + "model.Story");
-		names_obfuscated_4021.put(CLASS_SNAPVIEW, basename + "ui.SnapView");
-		names_obfuscated_4021.put(CLASS_SNAP_PREVIEW_FRAGMENT,basename + "SnapPreviewFragment");
-		names_obfuscated_4021.put(CLASS_SNAPUPDATE, basename + "model.server.SnapUpdate");
-		names_obfuscated_4021.put(CLASS_STORYVIEWRECORD, basename + "model.server.model.StoryViewRecord");
-		names_obfuscated_4021.put(FUNCTION_RECEIVEDSNAP_GETIMAGEBITMAP, "a");
-		names_obfuscated_4021.put(FUNCTION_RECEIVEDSNAP_GETVIDEOURI,"z");
-		names_obfuscated_4021.put(FUNCTION_RECEIVEDSNAP_GETSENDER,"d");
-		names_obfuscated_4021.put(FUNCTION_RECEIVEDSNAP_MARKVIEWED,"i");
-		names_obfuscated_4021.put(FUNCTION_STORY_GETIMAGEBITMAP, "a");
-		names_obfuscated_4021.put(FUNCTION_STORY_GETVIDEOURI, "z");
-		names_obfuscated_4021.put(FUNCTION_STORY_GETSENDER, "Z");
-		names_obfuscated_4021.put(FUNCTION_SNAPVIEW_SHOWIMAGE, "l");
-		names_obfuscated_4021.put(FUNCTION_SNAPVIEW_SHOWVIDEO, "a");
-		names_obfuscated_4021.put(FUNCTION_SNAP_GETTIMESTAMP, "K");
-		names_obfuscated_4021.put(FUNCTION_SNAPPREVIEWFRAGMENT_PREPARESNAPFORSENDING, "o");
-		names_obfuscated_4021.put(VARIABLE_SNAPPREVIEWFRAGMENT_ISVIDEOSNAP, "p");
-		names_obfuscated_4021.put(VARIABLE_SNAPPREVIEWFRAGMENT_SNAPCAPTUREDEVENT, "y");
-		names_obfuscated_4021.put(FUNCTION_SNAPPREVIEWFRAGMENT_VIDEOURI, "c");
-		names_obfuscated_4021.put(FUNCTION_SNAPPREVIEWFRAGMENT_GETSNAPBITMAP,"getSnapBitmap");
-		names_obfuscated_4021.put(VARIABLE_SNAPPREVIEWFRAGMENT_SNAPEDITORVIEW, "c");
+		names_obfuscated_4021B.put(CLASS_RECEIVEDSNAP, basename + "model.ReceivedSnap");
+		names_obfuscated_4021B.put(CLASS_STORY, basename + "model.Story");
+		names_obfuscated_4021B.put(CLASS_SNAPVIEW, basename + "ui.SnapView");
+		names_obfuscated_4021B.put(CLASS_SNAP_PREVIEW_FRAGMENT,basename + "SnapPreviewFragment");
+		names_obfuscated_4021B.put(CLASS_SNAPUPDATE, basename + "model.server.SnapUpdate");
+		names_obfuscated_4021B.put(CLASS_STORYVIEWRECORD, basename + "model.server.model.StoryViewRecord");
+		names_obfuscated_4021B.put(FUNCTION_RECEIVEDSNAP_GETIMAGEBITMAP, "a");
+		names_obfuscated_4021B.put(FUNCTION_RECEIVEDSNAP_GETVIDEOURI,"z");
+		names_obfuscated_4021B.put(FUNCTION_RECEIVEDSNAP_GETSENDER,"d");
+		names_obfuscated_4021B.put(FUNCTION_RECEIVEDSNAP_MARKVIEWED,"i");
+		names_obfuscated_4021B.put(FUNCTION_STORY_GETIMAGEBITMAP, "a");
+		names_obfuscated_4021B.put(FUNCTION_STORY_GETVIDEOURI, "z");
+		names_obfuscated_4021B.put(FUNCTION_STORY_GETSENDER, "Z");
+		names_obfuscated_4021B.put(FUNCTION_SNAPVIEW_SHOWIMAGE, "l");
+		names_obfuscated_4021B.put(FUNCTION_SNAPVIEW_SHOWVIDEO, "a");
+		names_obfuscated_4021B.put(FUNCTION_SNAP_GETTIMESTAMP, "K");
+		names_obfuscated_4021B.put(FUNCTION_SNAPPREVIEWFRAGMENT_PREPARESNAPFORSENDING, "o");
+		names_obfuscated_4021B.put(VARIABLE_SNAPPREVIEWFRAGMENT_ISVIDEOSNAP, "p");
+		names_obfuscated_4021B.put(VARIABLE_SNAPPREVIEWFRAGMENT_SNAPCAPTUREDEVENT, "y");
+		names_obfuscated_4021B.put(FUNCTION_SNAPPREVIEWFRAGMENT_VIDEOURI, "c");
+		names_obfuscated_4021B.put(FUNCTION_SNAPPREVIEWFRAGMENT_GETSNAPBITMAP,"getSnapBitmap");
+		names_obfuscated_4021B.put(VARIABLE_SNAPPREVIEWFRAGMENT_SNAPEDITORVIEW, "c");
 
-		names_obfuscated_4022.put(CLASS_RECEIVEDSNAP, basename + "model.ReceivedSnap");
-		names_obfuscated_4022.put(CLASS_STORY, basename + "model.Story");
-		names_obfuscated_4022.put(CLASS_SNAPVIEW, basename + "ui.SnapView");
-		names_obfuscated_4022.put(CLASS_SNAP_PREVIEW_FRAGMENT,basename + "SnapPreviewFragment");
-		names_obfuscated_4022.put(CLASS_SNAPUPDATE, basename + "model.server.SnapUpdate");
-		names_obfuscated_4022.put(CLASS_STORYVIEWRECORD, basename + "model.server.model.StoryViewRecord");
-		names_obfuscated_4022.put(FUNCTION_RECEIVEDSNAP_GETIMAGEBITMAP, "a");
-		names_obfuscated_4022.put(FUNCTION_RECEIVEDSNAP_GETVIDEOURI,"B");
-		names_obfuscated_4022.put(FUNCTION_RECEIVEDSNAP_GETSENDER,"e");
-		names_obfuscated_4022.put(FUNCTION_RECEIVEDSNAP_MARKVIEWED,"j");
-		names_obfuscated_4022.put(FUNCTION_STORY_GETIMAGEBITMAP, "a");
-		names_obfuscated_4022.put(FUNCTION_STORY_GETVIDEOURI, "N/A");
-		names_obfuscated_4022.put(FUNCTION_STORY_GETSENDER, "ab");
-		names_obfuscated_4022.put(FUNCTION_SNAPVIEW_SHOWIMAGE, "l");
-		names_obfuscated_4022.put(FUNCTION_SNAPVIEW_SHOWVIDEO, "a");
-		names_obfuscated_4022.put(FUNCTION_SNAP_GETTIMESTAMP, "M");
-		names_obfuscated_4022.put(FUNCTION_SNAPPREVIEWFRAGMENT_PREPARESNAPFORSENDING, "p");
-		names_obfuscated_4022.put(VARIABLE_SNAPPREVIEWFRAGMENT_ISVIDEOSNAP, "o");
-		names_obfuscated_4022.put(VARIABLE_SNAPPREVIEWFRAGMENT_SNAPCAPTUREDEVENT, "w");
-		names_obfuscated_4022.put(FUNCTION_SNAPPREVIEWFRAGMENT_VIDEOURI, "c");
-		names_obfuscated_4022.put(FUNCTION_SNAPPREVIEWFRAGMENT_GETSNAPBITMAP,"getSnapBitmap");
-		names_obfuscated_4022.put(VARIABLE_SNAPPREVIEWFRAGMENT_SNAPEDITORVIEW, "c");
+		names_obfuscated_4022B.put(CLASS_RECEIVEDSNAP, basename + "model.ReceivedSnap");
+		names_obfuscated_4022B.put(CLASS_STORY, basename + "model.Story");
+		names_obfuscated_4022B.put(CLASS_SNAPVIEW, basename + "ui.SnapView");
+		names_obfuscated_4022B.put(CLASS_SNAP_PREVIEW_FRAGMENT,basename + "SnapPreviewFragment");
+		names_obfuscated_4022B.put(CLASS_SNAPUPDATE, basename + "model.server.SnapUpdate");
+		names_obfuscated_4022B.put(CLASS_STORYVIEWRECORD, basename + "model.server.model.StoryViewRecord");
+		names_obfuscated_4022B.put(FUNCTION_RECEIVEDSNAP_GETIMAGEBITMAP, "a");
+		names_obfuscated_4022B.put(FUNCTION_RECEIVEDSNAP_GETVIDEOURI,"B");
+		names_obfuscated_4022B.put(FUNCTION_RECEIVEDSNAP_GETSENDER,"e");
+		names_obfuscated_4022B.put(FUNCTION_RECEIVEDSNAP_MARKVIEWED,"j");
+		names_obfuscated_4022B.put(FUNCTION_STORY_GETIMAGEBITMAP, "a");
+		names_obfuscated_4022B.put(FUNCTION_STORY_GETVIDEOURI, "N/A");
+		names_obfuscated_4022B.put(FUNCTION_STORY_GETSENDER, "ab");
+		names_obfuscated_4022B.put(FUNCTION_SNAPVIEW_SHOWIMAGE, "l");
+		names_obfuscated_4022B.put(FUNCTION_SNAPVIEW_SHOWVIDEO, "a");
+		names_obfuscated_4022B.put(FUNCTION_SNAP_GETTIMESTAMP, "M");
+		names_obfuscated_4022B.put(FUNCTION_SNAPPREVIEWFRAGMENT_PREPARESNAPFORSENDING, "p");
+		names_obfuscated_4022B.put(VARIABLE_SNAPPREVIEWFRAGMENT_ISVIDEOSNAP, "o");
+		names_obfuscated_4022B.put(VARIABLE_SNAPPREVIEWFRAGMENT_SNAPCAPTUREDEVENT, "w");
+		names_obfuscated_4022B.put(FUNCTION_SNAPPREVIEWFRAGMENT_VIDEOURI, "c");
+		names_obfuscated_4022B.put(FUNCTION_SNAPPREVIEWFRAGMENT_GETSNAPBITMAP,"getSnapBitmap");
+		names_obfuscated_4022B.put(VARIABLE_SNAPPREVIEWFRAGMENT_SNAPEDITORVIEW, "c");
 
 		names_obfuscated_4101.put(CLASS_RECEIVEDSNAP, basename + "model.ReceivedSnap");
 		names_obfuscated_4101.put(CLASS_STORY, basename + "model.Story");
@@ -169,6 +173,7 @@ public class VersionResolution {
 		names_obfuscated_4101.put(FUNCTION_SNAPPREVIEWFRAGMENT_VIDEOURI, "c");
 		names_obfuscated_4101.put(FUNCTION_SNAPPREVIEWFRAGMENT_GETSNAPBITMAP,"getSnapBitmap");
 		names_obfuscated_4101.put(VARIABLE_SNAPPREVIEWFRAGMENT_SNAPEDITORVIEW, "c");
+
 		//@formatter:on
 	}
 	

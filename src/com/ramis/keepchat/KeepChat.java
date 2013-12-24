@@ -428,8 +428,7 @@ public class KeepChat implements IXposedHookLoadPackage {
 			 * getVideoUri() hook The Story class because the stories use the
 			 * Story class and not the RecievedSnap class to prepare the video.
 			 */
-			if (!versionName.equals("4.0.22 Beta")
-					&& !versionName.equals("4.1.01")) {
+			if (resolution.videoStoryLegacy()) {
 				findAndHookMethod(names.get(CLASS_STORY), lpparam.classLoader,
 						names.get(FUNCTION_STORY_GETVIDEOURI),
 						new XC_MethodHook() {
